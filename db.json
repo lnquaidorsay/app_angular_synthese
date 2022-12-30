@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Computer",
+      "price": "4350",
+      "quantity": "99999",
+      "selected": true,
+      "available": false
+    },
+    {
+      "id": 2,
+      "name": "p",
+      "price": "90",
+      "quantity": 0,
+      "selected": true,
+      "available": false
+    },
+    {
+      "id": 3,
+      "name": "azerty",
+      "price": 0,
+      "quantity": 0,
+      "selected": true,
+      "available": false
+    },
+    {
+      "id": 4,
+      "name": "lave linge",
+      "price": "1250",
+      "quantity": "24",
+      "selected": true,
+      "available": true
+    }
+  ]
+}
