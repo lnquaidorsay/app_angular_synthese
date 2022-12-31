@@ -5,6 +5,8 @@ import {Observable, of} from 'rxjs';
 import {catchError, map, startWith} from 'rxjs/operators';
 import {ActionEvent, AppDataState, DataStateEnum, ProductActionsTypes} from '../../state/product.state';
 import {Router} from '@angular/router';
+import {EventDriverService} from "../../state/event.driver.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-products',
@@ -15,9 +17,14 @@ export class ProductsComponent implements OnInit {
    products$:Observable<AppDataState<Product[]>> |null=null;
    readonly DataStateEnum=DataStateEnum;
 
-   constructor(private productsService:ProductsService, private router:Router) { }
+   constructor(private productsService:ProductsService,
+               private router:Router,
+               private eventDrivenService:EventDriverService) { }
 
   ngOnInit(): void {
+    this.eventDrivenService.sourceEventSubjectObservable.subscribe((actionEvent:ActionEvent)=>{
+      this.onActionEvent(actionEvent);
+    });
   }
 
   onGetAllProducts() {
@@ -96,8 +103,30 @@ export class ProductsComponent implements OnInit {
       case ProductActionsTypes.SEARCH_PRODUCTS: this.onSearch($event.payload);break;
       case ProductActionsTypes.NEW_PRODUCT: this.onNewProduct();break;
       case ProductActionsTypes.SELECT_PRODUCT: this.onSelect($event.payload);break;
-      case ProductActionsTypes.DELETE_PRODUCT: this.onDelete($event.payload);break;
+      case ProductActionsTypes.DELETE_PRODUCT: this.alertConfirmation($event.payload);break;
       case ProductActionsTypes.EDIT_PRODUCT: this.onEdit($event.payload);break;
     }
   }
+
+  alertConfirmation(p: Product) {
+    Swal.fire({
+      title: 'Etes vous sûre?',
+      text: 'Le produit '+p.id.toString()+' va être supprimé.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Oui, vas y.',
+      cancelButtonText: 'Non,pas de suppression',
+    }).then((result) => {
+      if (result.value) {
+        this.productsService.deleteProduct(p)
+          .subscribe(data=>{
+            this.onGetAllProducts();
+          })
+        Swal.fire('Supprimé!', 'Le produit a été supprimé.', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Annulé', 'Le produit est conservé.)', 'error');
+      }
+    });
+  }
+
 }

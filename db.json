@@ -3,16 +3,8 @@
     {
       "id": 1,
       "name": "Computer",
-      "price": "4355",
+      "price": "43550",
       "quantity": "99999",
-      "selected": true,
-      "available": false
-    },
-    {
-      "id": 2,
-      "name": "p",
-      "price": "90",
-      "quantity": 0,
       "selected": true,
       "available": false
     },
@@ -31,6 +23,14 @@
       "quantity": "24",
       "selected": true,
       "available": true
+    },
+    {
+      "name": "ppp",
+      "price": "280",
+      "quantity": "58",
+      "selected": true,
+      "available": true,
+      "id": 5
     }
   ]
 }
