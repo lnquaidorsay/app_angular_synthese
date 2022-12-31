@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Computer",
-      "price": "4350",
+      "price": "4355",
       "quantity": "99999",
       "selected": true,
       "available": false

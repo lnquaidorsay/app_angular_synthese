@@ -35,20 +35,11 @@ export class ProductEditComponent implements OnInit {
       });
   }
 
-  get f() { return this.productFormGroup.controls; }
-
   onUpdateProduct() {
     this.productsService.updateProduct(this.productFormGroup?.value)
       .subscribe(data=>{
-        //alert("Success Product updated");
-        //this.successNotification()
-        //this.router.navigateByUrl("/products");
         this.alertConfirmation()
       });
-  }
-
-  successNotification() {
-    Swal.fire('Salut !', 'produit modifié!', 'success');
   }
 
   alertConfirmation() {
@@ -59,26 +50,10 @@ export class ProductEditComponent implements OnInit {
       confirmButtonText: 'Voir les produits ?',
     }).then((result) => {
       if (result.value) {
-        //Swal.fire('Removed!', 'Product removed successfully.', 'success');
         this.router.navigateByUrl("/products");
       }
     });
   }
 
-  alertConfirmation1() {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'This process is irreversible.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think',
-    }).then((result) => {
-      if (result.value) {
-        Swal.fire('Removed!', 'Product removed successfully.', 'success');
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire('Cancelled', 'Product still in our database.)', 'error');
-      }
-    });
-  }
+  get f() { return this.productFormGroup.controls; }
 }

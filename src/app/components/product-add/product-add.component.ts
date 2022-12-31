@@ -25,8 +25,6 @@ export class ProductAddComponent implements OnInit {
     });
   }
 
-  get f() { return this.productFormGroup.controls; }
-
   onSaveProduct() {
     this.submitted=true;
     if(this.productFormGroup?.invalid) return;
@@ -40,4 +38,5 @@ export class ProductAddComponent implements OnInit {
   successNotification() {
     Swal.fire('Bonjour !', 'produit ajouté!', 'success');
   }
+  get f() { return this.productFormGroup.controls; }
 }

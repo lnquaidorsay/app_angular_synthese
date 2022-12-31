@@ -10,6 +10,9 @@ import {ProductsComponent} from "./components/products/products.component";
 import {HttpClientModule} from "@angular/common/http";
 import {NavBarComponent} from "./components/nav-bar/nav-bar.component";
 import {ProductAddComponent} from "./components/product-add/product-add.component";
+import {ProductsListComponent} from "./components/products/products-list/products-list.component";
+import {ProductItemComponent} from "./components/products/products-list/product-item/product-item.component";
+import {ProductsNavBarComponent} from "./components/products/products-nav-bar/products-nav-bar.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import {ProductAddComponent} from "./components/product-add/product-add.componen
     ProductsComponent,
     HomeComponent,
     ProductAddComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductsNavBarComponent,
+    ProductsListComponent,
+    ProductItemComponent
   ],
   imports: [
     BrowserModule,
